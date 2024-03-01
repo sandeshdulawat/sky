@@ -141,7 +141,7 @@ function Slider() {
       </div>
 
       <div className="pb-4">
-        <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+        <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
           Visit Our Experience Centre Today
         </button>
       </div>

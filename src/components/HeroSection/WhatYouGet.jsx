@@ -41,7 +41,7 @@ function WhatYouGet() {
             </div>
           </div>
         </div>
-        <button className="text-sm flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12">
+        <button className="text-sm flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
         Get Free Estimates
         </button>
       </div>

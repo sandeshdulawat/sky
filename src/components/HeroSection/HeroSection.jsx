@@ -47,7 +47,7 @@ function HeroSection() {
             <p>10 Year Warranty</p>
           </div>
         </div>
-        <button className="flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12">
+        <button className="flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
         Talk To Our Designer
         </button>
       </div>
