@@ -12,7 +12,7 @@ import swiper1005 from "../../assets/images/footer/quikr-homes-awards-most-innov
 
 function About() {
   return (
-    <div className="bg-secondary">
+    <div className="bg-[#f9f9f9]">
       <div className="container md:space-y-8 py-8 ">
         <div className=" max-w-screen-xl">
           <div className="space-y-8">
@@ -48,7 +48,7 @@ function About() {
         </div>
       </div>
       {/* slider  */}
-      <div className="mx-auto bg-white">
+      <div className="mx-auto bg-secondary">
         <div className="max-w-screen-xl container pt-16 overflow-hidden ">
           <div className="text-center">
             <h1 className="text-lg font-bold text-nowrap">
