@@ -3,6 +3,7 @@ import React from "react";
 import img1 from "../../assets/images/bedroom-interior-designs-1.png";
 import img3 from "../../assets/images/best-interior-design-for-kitchen.png";
 import img4 from "../../assets/images/space-saving-apartment-interior-designs.png";
+import MyModal from "../../Pages/Modal";
 
 function WhatYouGet() {
   return (
@@ -41,9 +42,16 @@ function WhatYouGet() {
             </div>
           </div>
         </div>
-        <button className="text-sm flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
-        Get Free Estimates
-        </button>
+
+        <div className="flex justify-center">
+          <MyModal
+            buttonText={
+              <div className="flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
+                <h1>Get Free Estimates</h1>
+              </div>
+            }
+          />
+        </div>
       </div>
     </div>
   );

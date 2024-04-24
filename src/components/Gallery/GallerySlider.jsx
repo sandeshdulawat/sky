@@ -18,6 +18,7 @@ import swiper1012 from "../../assets/images/webp/eclectic-living-room-interior-1
 import swiper1013 from "../../assets/images/webp/living-room-interiors-with-tv-unit-and-wall-panelling.webp";
 import swiper1014 from "../../assets/images/webp/living-room-interior-designs.webp";
 import swiper1015 from "../../assets/images/webp/classy-living-room-interiors.png";
+import MyModal from "../../Pages/Modal";
 
 const GallerySlider = () => {
   return (
@@ -108,10 +109,14 @@ const GallerySlider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="pb-4">
-          <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
-            Talk To Our Space Saving Experts!
-          </button>
+        <div className="flex justify-center pb-4 ">
+          <MyModal
+            buttonText={
+              <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+                <h1>Talk To Our Space Saving Experts!</h1>
+              </div>
+            }
+          />
         </div>
       </div>
 
@@ -198,10 +203,14 @@ const GallerySlider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="pb-4">
-          <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
-            Meet Our Kitchen Experts
-          </button>
+        <div className="flex justify-center pb-4">
+          <MyModal
+            buttonText={
+              <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+                <h1> Meet Our Kitchen Experts</h1>
+              </div>
+            }
+          />
         </div>
       </div>
 
@@ -290,10 +299,14 @@ const GallerySlider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="pb-4">
-          <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
-            Meet our Designer
-          </button>
+        <div className="flex justify-center pb-4">
+          <MyModal
+            buttonText={
+              <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+                <h1> Meet our Designer</h1>
+              </div>
+            }
+          />
         </div>
       </div>
 
@@ -383,10 +396,14 @@ const GallerySlider = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-        <div className="pb-4">
-          <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
-            Book Free Consultation
-          </button>
+        <div className="flex justify-center pb-4">
+          <MyModal
+            buttonText={
+              <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+                <h1>Book Free Consultation</h1>
+              </div>
+            }
+          />
         </div>
       </div>
     </>

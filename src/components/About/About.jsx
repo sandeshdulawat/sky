@@ -9,6 +9,7 @@ import swiper1002 from "../../assets/images/footer/times-business-award-most-inn
 import swiper1003 from "../../assets/images/footer/entrepreneur-india-award-most-enterprising-business-2019.png";
 import swiper1004 from "../../assets/images/footer/entrepreneur-india-award-most-innovative-startup-2018.png";
 import swiper1005 from "../../assets/images/footer/quikr-homes-awards-most-innovative-interior-design-company-2018.png";
+import MyModal from "../../Pages/Modal";
 
 function About() {
   return (
@@ -34,10 +35,14 @@ function About() {
                   That is why we have a team of 400+ designers to advise
                   customers.
                 </p>
-                <div className="pt-12">
-                  <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
-                    Meet A Design Expert Today!
-                  </button>
+                <div className="flex justify-center pt-12">
+                  <MyModal
+                    buttonText={
+                      <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2">
+                        <h1>Meet A Design Expert Today!</h1>
+                      </div>
+                    }
+                  />
                 </div>
               </div>
               <div>

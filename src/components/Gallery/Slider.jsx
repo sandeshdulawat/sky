@@ -14,6 +14,7 @@ import swiper1008 from "../../assets/images/footer/best-interior-designers-navi-
 import swiper1009 from "../../assets/images/footer/best-interior-design-firm-in-hyderabad.jpg";
 import swiper1010 from "../../assets/images/footer/designer-house-interior-pune.jpg";
 import swiper1011 from "../../assets/images/footer/home-interior-designs-mumbai.jpg";
+import MyModal from "../../Pages/Modal";
 
 function Slider() {
   return (
@@ -139,12 +140,16 @@ function Slider() {
           </Swiper>
         </div>
       </div>
-
-      <div className="pb-4">
-        <button className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
-          Visit Our Experience Centre Today
-        </button>
-      </div>
+      <div className="flex justify-center pb-4">
+          <MyModal
+            buttonText={
+              <div className="text-xs md:text-base flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
+                <h1>Visit Our Experience Centre Today</h1>
+              </div>
+            }
+          />
+        </div>
+      
     </div>
   );
 }

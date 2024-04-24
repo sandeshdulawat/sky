@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../../../src/index.css";
 import Logo from "../../assets/images/dcLogo.png";
 import { PhoneCall } from "lucide-react";
+import MyModal from "../../Pages/Modal";
 
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
@@ -54,10 +55,19 @@ const Navbar = () => {
             </a>
             </div>
             <a href="">
-              <button className="bg-primary text-xs text-primaryWhite p-2 rounded-md shadow-md text-nowrap">
-                Get Free Quote
+              <button className="">
+                
               </button>
             </a>
+            <div className="flex justify-center">
+          <MyModal
+            buttonText={
+              <div className="bg-primary text-xs text-primaryWhite p-2 rounded-md shadow-md text-nowrap">
+                <h1>Get Free Quote</h1>
+              </div>
+            }
+          />
+        </div>
           </div>
         </div>
       </div>
