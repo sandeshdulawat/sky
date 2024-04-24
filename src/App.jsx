@@ -6,6 +6,7 @@ import HomePage from "./Pages/HomePage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import NoPage from "./Pages/NoPage";
+import PrivacyPolicy from "./Pages/PrivacyPolicy";
 
 const App = () => {
   useEffect(() => {
@@ -23,6 +24,8 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/*" element={<NoPage />} />
+        <Route path="/PrivacyPolicy" element={<PrivacyPolicy/>} />
+        <Route path="/TermsOfUse" element={<PrivacyPolicy/>} />
       </Routes>
       <ToastContainer />
     </BrowserRouter>

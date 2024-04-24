@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import backgroundMobile from "../../assets/images/home-interior-design-m.jpg";
 import background from "../../assets/images/home-interior-design-d.jpg";
 import service1 from "../../assets/images/personalised-home-interiors.png";
 import service2 from "../../assets/images/top-interior-designers.png";
 import service3 from "../../assets/images/low-budget-interior-designers-near-me.png";
 import service4 from "../../assets/images/best-interior-designer.png";
+import MyModal from "../../Pages/Modal";
 
 function HeroSection() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div>
       <picture>
@@ -47,9 +58,15 @@ function HeroSection() {
             <p>10 Year Warranty</p>
           </div>
         </div>
-        <button className="flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
-        Talk To Our Designer
-        </button>
+        <MyModal
+              buttonText={
+                <>
+                  <div className="flex items-center shadow-md mx-auto bg-primary rounded-md text-primaryWhite p-2 mt-12 hover:scale-105 hover:-translate-y-[0.5px] duration-200">
+                    <h1>Talk To Our Designer</h1>
+                  </div>
+                </>
+              }
+            />
       </div>
     </div>
   );

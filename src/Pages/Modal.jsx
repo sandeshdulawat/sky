@@ -1,77 +1,44 @@
+import React, { useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-// import { createUserWithEmailAndPassword } from "firebase/auth";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
 import { toast } from "react-toastify";
-import { auth, fireDB } from "../Firebase/FirebaseConfig";
+import { fireDB } from "../Firebase/FirebaseConfig";
 import { Timestamp, addDoc, collection } from "firebase/firestore";
 import { ImCross } from "react-icons/im";
-import "react-phone-number-input/style.css";
-import "react-phone-input-2/lib/style.css";
 import { Link, useNavigate } from "react-router-dom";
-import "./rainyeffect.css";
+import { BsWhatsapp } from "react-icons/bs";
 
 export default function MyModal({ buttonText }) {
-  let [isOpen, setIsOpen] = useState(false);
-  let [isRegistered, setIsRegistered] = useState(false);
-
-  function closeModal() {
-    setIsOpen(false);
-    setIsRegistered(false); // Reset registration status when closing the modal
-  }
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const navigate = useNavigate();
-
-  // const signup = async () => {
-  //   if (name === "" || email === "" || password === "") {
-  //     return toast.error("All fields are required");
-  //   }
-  //   try {
-  //     const users = await createUserWithEmailAndPassword(auth, email, password);
-
-  //     const user = {
-  //       name: name,
-  //       uid: users.user.uid,
-  //       email: users.user.email,
-  //       time: Timestamp.now(),
-  //     };
-  //     const userRef = collection(fireDB, "users");
-  //     await addDoc(userRef, user);
-  //     toast.success("Registration completed");
-  //     setName("");
-  //     setEmail("");
-  //     setPassword("");
-  //     setIsRegistered(true); // Set registration status to true after successful registration
-  //     setTimeout(() => {
-  //       closeModal();
-  //     }, 3000);
-  //     navigate("/Thank-You");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
+  const [isOpen, setIsOpen] = useState(false);
+  const [isRegistered, setIsRegistered] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [selectedPropertyType, setSelectedPropertyType] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+
   const navigate = useNavigate();
 
+  const openModal = () => {
+    setIsOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setIsRegistered(false);
+  };
+
   const signup = async () => {
-    if (name === "" || email === "" || password === "") {
+    if (!name || !email || !phoneNumber || !selectedPropertyType || !selectedLocation) {
       return toast.error("All fields are required");
     }
     try {
       const user = {
         name: name,
         email: email,
-        number: password,
+        phoneNumber: phoneNumber,
+        propertyType: selectedPropertyType,
+        location: selectedLocation,
         time: Timestamp.now(),
       };
       const userRef = collection(fireDB, "users");
@@ -79,23 +46,23 @@ export default function MyModal({ buttonText }) {
       toast.success("Registration completed");
       setName("");
       setEmail("");
-      setPassword("");
+      setPhoneNumber("");
+      setSelectedPropertyType("");
+      setSelectedLocation("");
+      setIsRegistered(true);
       setTimeout(() => {
+        closeModal();
         navigate("/Thank-You");
       }, 3000);
     } catch (error) {
       console.log(error);
     }
-
-
   };
 
   return (
     <>
-      <div className="">
-        <button onClick={openModal} className="">
-          {buttonText}
-        </button>
+      <div>
+        <button onClick={openModal}>{buttonText}</button>
       </div>
 
       <Transition appear show={isOpen} as={Fragment}>
@@ -123,77 +90,111 @@ export default function MyModal({ buttonText }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-sm transform overflow-hidden rounded-2xl bg-gray-100 p-4 text-left align-middle shadow-xl transition-all relative">
-                  <div
-                    className="w-full h-28 lg:h-36 overflow-hidden rounded-t-lg relative text-center mx-auto "
-                    id="background"
-                  >
-                    {/* <h1 className="w-full mt-10 mx-auto text-4xl lg:text-6xl font-pro font-semibold text-tertiary uppercase">
-                      register
-                    </h1> */}
-                  </div>
-                  <p className="text-center text-xs py-2 text-primary font-monst shadow-md">
-                    Curious about extraordinary living? Fill in the details to
-                    view your dream home now!
-                  </p>
-                  <ImCross
-                    onClick={closeModal}
-                    className="text-3xl absolute top-5 right-5 rounded-full bg-tertiary p-2 shadow shadow-primary"
-                  />
+                <Dialog.Panel className="relative">
                   {!isRegistered && (
-                    <form action="" className=" space-y-2 mt-6">
-                      <div>
-                        <input
-                          value={name}
-                          onChange={(e) => setName(e.target.value)}
-                          name="name"
-                          placeholder="Full Name"
-                          className="p-2 lg:p-3  w-full rounded-lg bg-white shadow-sm placeholder:text-sm"
-                        />
-                      </div>
-                      <div>
-                        <input
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          name="email"
-                          placeholder="Email Address"
-                          className="p-2 lg:p-3 w-full rounded-lg bg-white shadow-sm placeholder:text-sm"
-                        />
-                        {/* <p className="text-xs ml-2 text-gray-600">*optional</p> */}
-                      </div>
-                      <div>
-                        <input
-                          placeholder="Phone number"
-                          value={password}
-                          onChange={(e) => setPassword(e.target.value)}
-                          className="p-2 lg:p-3 w-full rounded-lg shadow-sm placeholder:text-sm"
-                        />
-                      </div>
-                      <div className="flex items-start py-2 gap-2">
-                        <input type="checkbox" required checked />
-                        <p className="text-xs text-wrap drop-shadow-md">
-                          I consent to the use of my provided data in accordance
-                          with the privacy policy.
-                        </p>
+                    <form className="rounded-2xl bg-gray-100 overflow-hidden text-left align-middle shadow-xl transition-all ">
+                      <div className="md:flex  ">
+                        <div className="md:w-80 max-w-96">
+                          <picture>
+                            <source
+                              media="(max-width: 900px)"
+                              srcSet="https://media.designcafe.com/wp-content/uploads/2024/04/01004030/home-interior-offer-m.jpg"
+                            />
+                            <img
+                              className="w-full h-fit bg-cover bg-center bottom-0 left-0"
+                              src="https://media.designcafe.com/wp-content/uploads/2024/04/01004018/home-interior-offer-d.jpg"
+                              alt="image"
+                            />
+                          </picture>
+                        </div>
+                        <div className="max-w-96 p-4 space-y-4">
+                          <div>
+                            <h1 className="capitalize font-bold text-lg">
+                              Get a Free <span className="text-primary"> Design</span> Consultation
+                            </h1>
+                          </div>
+                          <div>
+                            <input
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
+                              name="name"
+                              placeholder="Full Name"
+                              className="p-2 lg:p-2 w-full rounded-lg bg-white shadow-sm placeholder:text-sm"
+                            />
+                          </div>
+                          <div>
+                            <input
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
+                              name="email"
+                              placeholder="Email Address"
+                              className="p-2 lg:p-2 w-full rounded-lg bg-white shadow-sm placeholder:text-sm"
+                            />
+                          </div>
+                          <div>
+                            <input
+                              placeholder="Phone number"
+                              value={phoneNumber}
+                              onChange={(e) => setPhoneNumber(e.target.value)}
+                              className="p-2 lg:p-2 w-full rounded-lg shadow-sm placeholder:text-sm"
+                            />
+                          </div>
+                          <div>
+                            <select
+                              value={selectedPropertyType}
+                              onChange={(e) => setSelectedPropertyType(e.target.value)}
+                              className="p-2 lg:p-2 w-full rounded-lg shadow-sm"
+                            >
+                              <option value="">Select Property Type</option>
+                              <option value="1BHK">1BHK</option>
+                              <option value="2BHK">2BHK</option>
+                              <option value="3BHK">3BHK</option>
+                              <option value="4BHK">4BHK / Duplex</option>
+                            </select>
+                          </div>
+                          <div>
+                            <select
+                              value={selectedLocation}
+                              onChange={(e) => setSelectedLocation(e.target.value)}
+                              className="p-2 lg:p-2 w-full rounded-lg shadow-sm"
+                            >
+                              <option value="">Select Location</option>
+                              <option value="Mumbai">Mumbai</option>
+                              <option value="Navi Mumbai">Navi Mumbai</option>
+                            </select>
+                          </div>
+                          <div className="flex items-start py-2 gap-2">
+                          <input type="checkbox" required checked />
+                            <p className="flex items-center gap-1 text-xs text-wrap capitalize drop-shadow-md">
+                              get exclusive quotes & offers on whatsapp <BsWhatsapp color="green" />
+                            </p>
+                          </div>
+                          <div className="mt-4 w-fit mx-auto">
+                            <button
+                              type="button"
+                              className="inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-white hover:translate-y-0.5 duration-200"
+                              onClick={signup}
+                            >
+                              book a free Consultation
+                            </button>
+                          </div>
+                          <div>
+                            <p className="text-xs capitalize drop-shadow-md">
+                              By Submitting, you consent to <Link to="/PrivacyPolicy" className="text-primary">Privacy Policy</Link> and <Link to="/TermsOfUse" className="text-primary">terms of use</Link> 
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </form>
                   )}
+                  <ImCross color="white"
+                    onClick={closeModal}
+                    className="text-3xl absolute -top-4 -right-4 rounded-full bg-primary p-2 shadow shadow-secondary"
+                  />
                   {isRegistered && (
                     <div className="text-center">
                       <p>Registration completed!</p>
                       <Link to="/">Go to Home</Link>
-                    </div>
-                  )}
-
-                  {!isRegistered && (
-                    <div className="mt-4 w-fit mx-auto">
-                      <button
-                        type="button"
-                        className="inline-flex justify-center rounded-md border border-transparent bg-primary px-4 py-2 text-sm font-medium text-tertiary hover:translate-y-0.5 duration-200"
-                        onClick={signup}
-                      >
-                        View Project Detail
-                      </button>
                     </div>
                   )}
                   <div className="flex justify-between align-bottom text-xs text-nowrap pt-6 text-gray-500">
